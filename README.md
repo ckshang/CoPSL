@@ -25,7 +25,7 @@ The code is mainly designed to be simple and readable, it contains:
 
 ### Benchmarks
 
-- Two-dimensional synthetic problems: F1 to F6.
+- Two-dimensional synthetic problems: F1 to F6;
 - Three-dimensional real-world engineering design problems: RE31, RE32, RE33, RE34, RE37.
 
 ### Parameters
