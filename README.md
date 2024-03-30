@@ -1,6 +1,6 @@
 # CoPSL
 
-This is the code of paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
+Code for IJCNN2024 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
 
 The code is mainly designed to be simple and readable, it contains:
 
@@ -11,6 +11,7 @@ The code is mainly designed to be simple and readable, it contains:
 - `model.py` contains both single-task and multi-task architecture models;
 - `problem.py` includes all the test problems used in the paper for running PSL algorithms;
 - `problem_emo.py` also contains all the test problems used in the paper for running EMO algorithms;
+- `utils.py` contains several reusable utility functions;
 - The folder `pf_re` contains the files related to the approximate Pareto fronts.
 
 ### Algorithms
