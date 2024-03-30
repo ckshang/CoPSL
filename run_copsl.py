@@ -1,15 +1,13 @@
 import argparse
-import numpy as np
-import pandas as pd
 import torch
 import time
 from pymoo.indicators.hv import HV
 from matplotlib import pyplot as plt
 from matplotlib import rcParams
-from matplotlib.legend_handler import HandlerPathCollection
 from matplotlib.ticker import MaxNLocator
 
 from problem import get_problem
+from utils import *
 from model import PSLModel, CoPSLModel, CoPSLGNModel
 
 
@@ -37,76 +35,13 @@ def get_args():
     return args
 
 
-def das_dennis_recursion(ref_dirs, ref_dir, n_partitions, beta, depth):
-    if depth == len(ref_dir) - 1:
-        ref_dir[depth] = beta / (1.0 * n_partitions)
-        ref_dirs.append(ref_dir[None, :])
-    else:
-        for i in range(beta + 1):
-            ref_dir[depth] = 1.0 * i / (1.0 * n_partitions)
-            das_dennis_recursion(ref_dirs, np.copy(ref_dir), n_partitions, beta - i, depth + 1)
-
-
-def das_dennis(n_partitions, n_dim):
-    if n_partitions == 0:
-        return np.full((1, n_dim), 1 / n_dim)
-    else:
-        ref_dirs = []
-        ref_dir = np.full(n_dim, np.nan)
-        das_dennis_recursion(ref_dirs, ref_dir, n_partitions, n_partitions, 0)
-        return np.concatenate(ref_dirs, axis=0)
-
-
-class HandlerDashedCollection(HandlerPathCollection):
-    def create_collection(self, orig_handle, sizes, *args, **kwargs):
-        p = super().create_collection(orig_handle, sizes, *args, **kwargs)
-        p.set_edgecolor(p.get_facecolor())  # Set edge color to face color for scatter plot
-        return p
-
-
-def load_pf():
-    re31 = pd.read_csv('pf_re/reference_points_RE31.dat', header=None).values
-    re32 = pd.read_csv('pf_re/reference_points_RE32.dat', header=None).values
-    re33 = pd.read_csv('pf_re/reference_points_RE33.dat', header=None).values
-    re34 = pd.read_csv('pf_re/reference_points_RE34.dat', header=None).values
-    re37 = pd.read_csv('pf_re/reference_points_RE37.dat', header=None).values
-
-    f1_pf = pd.read_csv('pf_re/reference_points_F1.dat', header=None).values
-    re31_pf = []
-    re32_pf = []
-    re33_pf = []
-    re34_pf = []
-    re37_pf = []
-    for i in range(len(re31)):
-        re31_pf_ = list(map(float, re31[i][0].split()))
-        re31_pf.append(re31_pf_)
-    for i in range(len(re32)):
-        re32_pf_ = list(map(float, re32[i][0].split()))
-        re32_pf.append(re32_pf_)
-    for i in range(len(re33)):
-        re33_pf_ = list(map(float, re33[i][0].split()))
-        re33_pf.append(re33_pf_)
-    for i in range(len(re34)):
-        re34_pf_ = list(map(float, re34[i][0].split()))
-        re34_pf.append(re34_pf_)
-    for i in range(len(re37)):
-        re37_pf_ = list(map(float, re37[i][0].split()))
-        re37_pf.append(re37_pf_)
-
-    return f1_pf, re31_pf, re32_pf, re33_pf, re34_pf, re37_pf
-
-
 def evaluate(psmodel, hv_list, t_step):
     psmodel.eval()
     with torch.no_grad():
-        generated_pf = []
-        generated_ps = []
-
         if n_obj == 2:
             pref = np.stack([np.linspace(0, 1, 100), 1 - np.linspace(0, 1, 100)]).T
             pref = pref / np.linalg.norm(pref, axis=1).reshape(len(pref), 1)
             pref = torch.tensor(pref).to(args.device).float()
-
         if n_obj == 3:
             pref_size = 105
             pref = torch.tensor(das_dennis(13, 3)).to(args.device).float()  # 105
@@ -116,7 +51,6 @@ def evaluate(psmodel, hv_list, t_step):
             obj = problems[i].evaluate(sol[i])
             generated_ps = sol[i].cpu().numpy()
             generated_pf = obj.cpu().numpy()
-
             results_F_norm = generated_pf / np.array(problems[i].nadir_point)
 
             hv = HV(ref_point=np.array([1.1] * n_obj))
@@ -198,7 +132,7 @@ if __name__ == '__main__':
                     mtch_value = torch.max((1 / pref_vec) * (value - zs[i]), dim=1)[0] + 0.01 * torch.sum(value, dim=1)
                     losses.append(torch.sum(mtch_value))
 
-            total_loss = torch.sum(torch.stack(losses))  # simply calculate the average of the losses
+            total_loss = torch.sum(torch.stack(losses))  # simply calculate the average of the losses (w_i = 1)
 
             # gradient-based pareto set model update
             optimizer.zero_grad()
@@ -253,10 +187,8 @@ if __name__ == '__main__':
         #     ax.scatter(np.array(real_pf)[:, 0], np.array(real_pf)[:, 1], np.array(real_pf)[:, 2], color='#6495ED', s=s, alpha=0.05)
         #     ax.view_init(elev=10., azim=30)
         #     legend_true_pf = ax.scatter([], [], label='Approximated Pareto Front', s=s, alpha=1, color='#6495ED')
-        #
         #     ax.scatter(generated_pf[:, 0], generated_pf[:, 1], generated_pf[:, 2], c='#FAA460', s=s, alpha=0.09)
         #     legend_generated_pf = ax.scatter([], [], label='CoPSL Non-Dominated Sols', s=s, alpha=1, color='#FAA460')
-        #
         #     ax.legend(handler_map={legend_true_pf: HandlerDashedCollection()}, loc='best', fontsize=20)
         #
         #     plt.tight_layout()
@@ -264,7 +196,6 @@ if __name__ == '__main__':
         #     ax.ticklabel_format(style='sci', scilimits=(-2, 2), axis='x')
         #     ax.ticklabel_format(style='sci', scilimits=(-2, 2), axis='y')
         #     ax.ticklabel_format(style='sci', scilimits=(-2, 2), axis='z', useMathText=True)
-        #
         #     ax.tick_params(axis='x', labelsize=18, pad=0)
         #     ax.tick_params(axis='y', labelsize=18, pad=0)
         #     ax.tick_params(axis='z', labelsize=18, pad=0)
@@ -305,14 +236,12 @@ if __name__ == '__main__':
         #     plt.ylabel(r'$f_2$', size=20)
         #     plt.tick_params(bottom=False, top=False, left=False, right=False, labelsize=20)
         #
-        #     # Update the legend handler for the True Pareto front
         #     plt.legend(handler_map={legend_true_pf: HandlerDashedCollection()}, loc='best', fontsize=20)
         #     plt.text(x=0.61, y=0.61, s=f'HV: {round(hv_value, 2)}', fontsize=20)
         #
         # plt.grid(linewidth=1)
         # plt.tight_layout()
         # plt.savefig('exp_data/%s_%s_CoPSL_s%d.png' % (args.loss_func, args.ins_list[selected_problem], seed), bbox_inches='tight', dpi=300)
-        # # plt.show()
 
         print("************************************************************")
 

@@ -1,11 +1,10 @@
 import argparse
-import numpy as np
-import pandas as pd
 import torch
 import time
 from pymoo.indicators.hv import HV
 
 from problem import get_problem
+from utils import *
 from model import PSLModel, CoPSLModel, CoPSLGNModel
 
 
@@ -35,37 +34,13 @@ def get_args():
     return args
 
 
-def das_dennis_recursion(ref_dirs, ref_dir, n_partitions, beta, depth):
-    if depth == len(ref_dir) - 1:
-        ref_dir[depth] = beta / (1.0 * n_partitions)
-        ref_dirs.append(ref_dir[None, :])
-    else:
-        for i in range(beta + 1):
-            ref_dir[depth] = 1.0 * i / (1.0 * n_partitions)
-            das_dennis_recursion(ref_dirs, np.copy(ref_dir), n_partitions, beta - i, depth + 1)
-
-
-def das_dennis(n_partitions, n_dim):
-    if n_partitions == 0:
-        return np.full((1, n_dim), 1 / n_dim)
-    else:
-        ref_dirs = []
-        ref_dir = np.full(n_dim, np.nan)
-        das_dennis_recursion(ref_dirs, ref_dir, n_partitions, n_partitions, 0)
-        return np.concatenate(ref_dirs, axis=0)
-
-
 def evaluate(psmodel, hv_list, t_step):
     psmodel.eval()
     with torch.no_grad():
-        generated_pf = []
-        generated_ps = []
-
         if n_obj == 2:
             pref = np.stack([np.linspace(0, 1, 100), 1 - np.linspace(0, 1, 100)]).T
             pref = pref / np.linalg.norm(pref, axis=1).reshape(len(pref), 1)
             pref = torch.tensor(pref).to(args.device).float()
-
         if n_obj == 3:
             pref_size = 105
             pref = torch.tensor(das_dennis(13, 3)).to(args.device).float()  # 105
@@ -75,7 +50,6 @@ def evaluate(psmodel, hv_list, t_step):
             obj = problems[i].evaluate(sol[i])
             generated_ps = sol[i].cpu().numpy()
             generated_pf = obj.cpu().numpy()
-
             results_F_norm = generated_pf / np.array(problems[i].nadir_point)
 
             hv = HV(ref_point=np.array([1.1] * n_obj))

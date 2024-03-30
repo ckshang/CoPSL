@@ -36,13 +36,13 @@ class CoPSLModel(torch.nn.Module):
         self.n_dim = n_dim
         self.n_obj = n_obj
 
-        # shared bottom
+        # shared layer(s)
         self.shared_bottom = nn.Sequential(
             nn.Linear(self.n_obj, 256),
             nn.ReLU(),
         )
 
-        # towers
+        # MOP-specific layers
         for task_i in range(len(self.n_dim)):
             setattr(self, 'task_{}'.format(task_i), nn.Sequential(
                                                         nn.Linear(256, 256),
@@ -73,13 +73,13 @@ class CoPSLGNModel(torch.nn.Module):
         # dynamic weights for GradNorm
         self.weights = torch.nn.Parameter(torch.ones(len(self.n_dim)).float())
 
-        # shared bottom
+        # shared layer(s)
         self.shared_bottom = nn.Sequential(
             nn.Linear(self.n_obj, 256),
             nn.ReLU(),
         )
 
-        # towers
+        # MOP-specific layers
         for task_i in range(len(self.n_dim)):
             setattr(self, 'task_{}'.format(task_i), nn.Sequential(
                                                         nn.Linear(256, 256),

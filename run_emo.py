@@ -1,6 +1,4 @@
 import argparse
-import numpy as np
-import pandas as pd
 import torch
 import time
 from pymoo.indicators.hv import HV
@@ -11,6 +9,7 @@ from pymoo.util.ref_dirs import get_reference_directions
 from pymoo.optimize import minimize
 
 from problem_emo import get_problem
+from utils import *
 
 
 def get_args():
@@ -24,32 +23,11 @@ def get_args():
                         ['f1'], help='list of test problems')
     parser.add_argument('--n_run', type=int, default=10, help='number of independent run')
     # EMO
+    parser.add_argument('--algorithm', type=str, default='nsga3', help='algorithms: nsga2 / nsga3 / moead')
     parser.add_argument('--n_steps', type=int, default=500, help='number of learning steps')
     parser.add_argument('--n_pref_update', type=int, default=30, help='number of sampled preferences per step')
-    # EMO
-    parser.add_argument('--algorithm', type=str, default='nsga3', help='algorithms: nsga2 / nsga3 / moead')
     args = parser.parse_args()
     return args
-
-
-def das_dennis_recursion(ref_dirs, ref_dir, n_partitions, beta, depth):
-    if depth == len(ref_dir) - 1:
-        ref_dir[depth] = beta / (1.0 * n_partitions)
-        ref_dirs.append(ref_dir[None, :])
-    else:
-        for i in range(beta + 1):
-            ref_dir[depth] = 1.0 * i / (1.0 * n_partitions)
-            das_dennis_recursion(ref_dirs, np.copy(ref_dir), n_partitions, beta - i, depth + 1)
-
-
-def das_dennis(n_partitions, n_dim):
-    if n_partitions == 0:
-        return np.full((1, n_dim), 1 / n_dim)
-    else:
-        ref_dirs = []
-        ref_dir = np.full(n_dim, np.nan)
-        das_dennis_recursion(ref_dirs, ref_dir, n_partitions, n_partitions, 0)
-        return np.concatenate(ref_dirs, axis=0)
 
 
 if __name__ == '__main__':
