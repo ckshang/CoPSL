@@ -42,7 +42,7 @@ The parameters specified in the `./run_copsl.py` file are as follows:
 | `n_steps`           | Number of learning steps.                                  |
 | `n_pref_update`     | Number of sampled preferences per step.                    |
 | `lr`                | Learning rate.                                             |
-| `gamma`             | The gamma parameter for cosmos.                            |
+| `gamma`             | The $\gamma$ parameter for cosmos.                         |
 | `device`            | The device to run the program.                             |
 | `init_seed`         | Random seed.                                               |
 
