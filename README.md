@@ -1,16 +1,16 @@
 # CoPSL
 
-Code for IJCNN2024 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
+Code for IJCNN'24 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
 
 The code is mainly designed to be simple and readable, it contains:
 
-- `run_copsl.py` is a ~320-line script to run the CoPSL algorithms (including Pareto front visualization);
-- `run_copsl_gn.py` is a ~240-line script to run the CoPSL algorithms with the GradNorm strategy;
-- `run_psl.py` is a ~310-line script to run the PSL algorithms (including Pareto front visualization);
-- `run_emo.py` is a ~120-line script to run the EMO algorithms;
+- `run_copsl.py` is a ~250-line script to run the CoPSL algorithms (including Pareto front visualization);
+- `run_copsl_gn.py` is a ~210-line script to run the CoPSL algorithms with the GradNorm strategy;
+- `run_psl.py` is a ~240-line script to run the PSL algorithms (including Pareto front visualization);
+- `run_emo.py` is a ~100-line script to run the EMO algorithms;
+- `problem.py` includes all the test problems utilized in the paper for running PSL algorithms;
+- `problem_emo.py` also includes all the test problems utilized in the paper for running EMO algorithms;
 - `model.py` contains both single-task and multi-task architecture models;
-- `problem.py` includes all the test problems used in the paper for running PSL algorithms;
-- `problem_emo.py` also contains all the test problems used in the paper for running EMO algorithms;
 - `utils.py` contains several reusable utility functions;
 - The folder `pf_re` contains the files related to the approximate Pareto fronts.
 
@@ -45,3 +45,10 @@ The parameters specified in the `./run_copsl.py` file are as follows:
 | `gamma`             | The gamma parameter for cosmos.                            |
 | `device`            | The device to run the program.                             |
 | `init_seed`         | Random seed.                                               |
+
+### Citation
+
+If you find our work helpful to your research, please cite our paper:
+```
+Coming soon.
+```
