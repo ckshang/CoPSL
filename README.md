@@ -2,6 +2,8 @@
 
 Code for IJCNN'24 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
 
+![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
+
 The code is mainly designed to be simple and readable, it contains:
 
 - `run_copsl.py` is a ~250-line script to run the CoPSL algorithms (including Pareto front visualization);
