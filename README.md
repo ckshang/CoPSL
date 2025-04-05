@@ -1,6 +1,6 @@
 # CoPSL
 
-Code for IJCNN'24 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
+Code for IJCNN 2024 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
 
@@ -52,10 +52,12 @@ The parameters specified in the `./run_copsl.py` file are as follows:
 
 If you find our work helpful to your research, please cite our paper:
 ```
-@article{shang2024collaborative,
-  title={Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems},
+@inproceedings{shang2024collaborative,
+  title={Collaborative Pareto set learning in multiple multi-objective optimization problems},
   author={Shang, Chikai and Ye, Rongguang and Jiang, Jiaqi and Gu, Fangqing},
-  journal={arXiv preprint arXiv:2404.01224},
-  year={2024}
+  booktitle={2024 International Joint Conference on Neural Networks (IJCNN)},
+  pages={1--8},
+  year={2024},
+  organization={IEEE}
 }
 ```
