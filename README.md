@@ -5,9 +5,9 @@
 <!-- Center-No-Ver-Bar-H1-H2 for GitHub, fork from https://gist.github.com/CodeByAidan/bb43bdb1c07c0933d8b67c23515fb912 -->
 <div id="toc">
 	<ul align="center" style="list-style: none; padding:0; margin:0;">
-		<summary>
-			<h2> Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems </h2>
-			<h3> IJCNN 2024 Oral </h3>
+		<summary style="margin:0;">
+			<h2 style="margin:5px 0;">Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems</h2>
+			<h3 style="margin:5px 0;">IJCNN 2024 Oral</h3>
 		</summary>
 	</ul>
 </div>
