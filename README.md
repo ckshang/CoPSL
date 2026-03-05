@@ -55,7 +55,7 @@ The parameters specified in the `./run_copsl.py` file are as follows:
 
 ## Citation
 
-If you find our work helpful to your research, please cite using this BibTeX:
+If you find our work helpful in your research, please cite it as:
 ```
 @inproceedings{shang2024collaborative,
   title={Collaborative Pareto set learning in multiple multi-objective optimization problems},
