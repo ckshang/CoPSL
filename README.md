@@ -1,8 +1,22 @@
 # CoPSL
 
-**IJCNN 2024 (Oral)** | [**Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**](https://arxiv.org/abs/2404.01224)
+<div align="center">
+
+<!-- Center-No-Ver-Bar-H1-H2 for GitHub, fork from https://gist.github.com/CodeByAidan/bb43bdb1c07c0933d8b67c23515fb912 -->
+<div id="toc">
+	<ul align="center" style="list-style: none">
+		<summary>
+			<h3> Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems </h3>
+			<h4> IJCNN 2024 Oral </h4>
+		</summary>
+	</ul>
+</div>
+
+[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
+
+</div>
 
 The code is mainly designed to be simple and readable, it contains:
 
