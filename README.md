@@ -1,20 +1,10 @@
-# CoPSL
-
 <div align="center">
 
-<!-- Center-No-Ver-Bar-H1-H2 for GitHub, fork from https://gist.github.com/CodeByAidan/bb43bdb1c07c0933d8b67c23515fb912 -->
-<div id="toc">
-	<ul align="center" style="list-style: none">
-		<summary>
-			<h2> Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems </h2>
-			<h3> ——  IJCNN 2024 Oral  —— </h3>
-		</summary>
-	</ul>
-</div>
-
-[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
+# Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
+
+[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
 
 </div>
 
