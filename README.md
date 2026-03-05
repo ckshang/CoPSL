@@ -20,7 +20,7 @@ The code is mainly designed to be simple and readable, it contains:
 - `utils.py` contains several reusable utility functions;
 - The folder `pf_re` contains the files related to the approximate Pareto fronts.
 
-### Algorithms
+## Algorithms
 
 - PSL-LS
 - PSL-COSMOS
@@ -30,12 +30,12 @@ The code is mainly designed to be simple and readable, it contains:
 - NSGA-III
 - MOEA/D
 
-### Benchmarks
+## Benchmarks
 
 - Two-dimensional synthetic problems: F1 to F6;
 - Three-dimensional real-world engineering design problems: RE31, RE32, RE33, RE34, RE37.
 
-### Parameters
+## Parameters
 
 [//]: # (The following arguments to the `./run_copsl.py` file control the important parameters of the experiment.)
 The parameters specified in the `./run_copsl.py` file are as follows:
@@ -52,9 +52,9 @@ The parameters specified in the `./run_copsl.py` file are as follows:
 | `device`            | The device to run the program.                             |
 | `init_seed`         | Random seed.                                               |
 
-### Citation
+## Citation
 
-If you find our work helpful to your research, please cite our paper:
+If you find our work helpful to your research, please cite using this BibTeX:
 ```
 @inproceedings{shang2024collaborative,
   title={Collaborative Pareto set learning in multiple multi-objective optimization problems},
