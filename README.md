@@ -7,7 +7,7 @@
 	<ul align="center" style="list-style: none">
 		<summary>
 			<h2> Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems </h2>
-			<h3> —— IJCNN 2024 Oral —— </h3>
+			<h3> ——  IJCNN 2024 Oral  —— </h3>
 		</summary>
 	</ul>
 </div>
