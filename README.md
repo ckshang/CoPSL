@@ -1,22 +1,10 @@
 # CoPSL
 
-<div align="center">
-
-<!-- Center-No-Ver-Bar-H1-H2 for GitHub, fork from https://gist.github.com/CodeByAidan/bb43bdb1c07c0933d8b67c23515fb912 -->
-<div id="toc">
-	<ul align="center" style="list-style: none; padding:0; margin:0;">
-		<summary style="margin:0;">
-			<h2 style="margin:5px 0;">Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems</h2>
-			<h3 style="margin:5px 0;">IJCNN 2024 Oral</h3>
-		</summary>
-	</ul>
-</div>
-
-[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
+> Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems     
+> Chikai Shang, Rongguang Ye, Jiaqi Jiang, Fangqing Gu
+> *IJCNN 2024 Oral* [🔗Link](https://arxiv.org/pdf/2503.06457)
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
-
-</div>
 
 The code is mainly designed to be simple and readable, it contains:
 
