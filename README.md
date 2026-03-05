@@ -1,10 +1,10 @@
 <div align="center">
 
-# Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems
+# Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems 
+[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
 
-[![arXiv](https://img.shields.io/badge/arXiv-2503.13227-b31b1b.svg)](https://arxiv.org/abs/2404.01224)
 
 </div>
 
