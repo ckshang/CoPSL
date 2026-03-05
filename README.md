@@ -1,7 +1,7 @@
 # CoPSL
 
 > Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems     
-> Chikai Shang, Rongguang Ye, Jiaqi Jiang, Fangqing Gu
+> Chikai Shang, Rongguang Ye, Jiaqi Jiang, Fangqing Gu      
 > IJCNN 2024 Oral [🔗Link](https://arxiv.org/pdf/2503.06457)
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
