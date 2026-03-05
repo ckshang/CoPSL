@@ -1,6 +1,6 @@
 # CoPSL
 
-Code for IJCNN 2024 Paper: **Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**.
+**IJCNN 2024 (Oral)** | [**Collaborative Pareto Set Learning in Multiple Multi-Objective Optimization Problems**](https://arxiv.org/abs/2404.01224)
 
 ![image](https://github.com/ckshang/CoPSL/blob/main/figs/CoPSL.png)
 
